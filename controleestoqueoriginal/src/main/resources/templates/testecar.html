@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque</title>
+    <link rel="stylesheet" href="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\css\styles.css">
+</head>
+<body>
+    <h1>Controle de Estoque</h1>
+    <form action="/finalizarPedido" method="POST">
+        <table class="fonte">
+            <thead>
+                <tr class="fonte">
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Data de Entrada</th>
+                    <th>Unidade (kg)</th>
+                    <th>Quantidade em Estoque</th>
+                    <th>Fornecedor</th>
+                    <th>Quantidade a Retirar</th>
+                </tr>
+            </thead>
+            <tbody th:each="produto : ${produtos}">
+                <tr>
+                    <td th:text="${produto.codigoProduto}" class="fonte-pequena"></td>
+                    <td th:text="${produto.nomeProduto}" class="fonte-pequena"></td>
+                    <td th:text="${#dates.format(produto.dataEntrada, 'dd/MM/yyyy')}" class="fonte-pequena"></td>
+                    <td th:text="${produto.unidade}" class="fonte-pequena"></td>
+                    <td th:text="${produto.quantidade}" class="fonte-pequena"></td>
+                    <td th:text="${produto.fornecedor}" class="fonte-pequena"></td>
+                    <td>
+                        <input type="number" name="quantidades[${produto.codigoProduto}]" min="0" class="fonte-pequena">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">Finalizar Pedido</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,297 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300&family=Roboto&display=swap");
+/* SideBar*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+:root {
+    --color-white: white;
+    --color-gray: #f0f2f5;
+    --color-gray2: #dddfe2;
+    --color-dark: #1d2129;
+    --color-blue: #1b74e4;
+    --color-blue2: #166fe5;
+    --color-green: #42b72a;
+    --color-green2: #36a420;
+    --color-body: #00BF63;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-body);
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+}
+.dark-theme{
+    --color-body: var(--color-dark)
+}
+
+nav.menu-lateral{
+    width: 80px;
+    height: 100%;
+    background-color: #202020;
+    padding: 40px 0 40px 1%;
+    box-shadow: 3px 0 0 rgb(42, 170, 42);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    overflow: hidden;
+    transition: .5s;
+}
+
+nav.menu-lateral.expandir{
+    width: 300px;
+}
+
+.btn-expandir{
+    width: 100%;
+    padding-left: 10px;
+}
+
+.btn-expandir >i{
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.Ideau {
+    width: 100%;
+    display: flex;
+    padding-right: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 500px;
+    position: absolute;
+    
+}
+
+ul{
+    height: 100%;
+    list-style-type: none;
+}
+
+ul li.item-menu{
+    transition: .1s;
+}
+
+ul li.ativo{
+    background-color: rgb(22, 141, 22);
+}
+
+ul li.item-menu:hover{
+    background: rgb(49, 48, 48);
+}
+
+ul li.item-menu a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 20px 4%;
+    display: flex;
+    margin-bottom: 20px;
+    line-height: 40px;
+}
+
+ul li.item-menu a .txt-link{
+    margin-left: 70px;
+    transition: 1s;
+    opacity: 0;
+}
+
+nav.menu-lateral.expandir .txt-link{
+    margin-left: 40px;
+    opacity: 1;
+}
+
+ul li.item-menu a .icon >i{
+    font-size: 30px;
+    margin-left: 10px;
+}
+/*Imagem estoque*/
+.estocagem {
+    
+        position: relative; 
+        top: 240px; 
+        left: 23%;
+        width: 200px;    
+}
+/* posição botao*/
+.botao{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        position: fixed;
+        top: 0;
+        left: 23%;
+        width: 70%;
+        
+    }
+    /* estilo botao*/
+    .top-button {
+        padding: 10px 60px;
+        background-color: rgb(35,35,35);
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 100px;
+        font-size: 15px;
+    }
+
+  
+/*ESTILO DO LOGIN PAIA*/
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 70vw;
+}
+
+.content-info {
+    width: 40%;
+}
+
+.content-login {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.content-login-box {
+    background-color: #353535;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 2px 4px, rgb(0 0 0 / 10%) 0px 8px 16px;
+    margin-top: 120px;
+}
+
+.inputs {
+    padding: 15px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--color-green);
+    outline: none;
+    width: 90%;
+    font-size: 17px;
+}
+
+.inputs:focus {
+    border-color: var(--color-green);
+    box-shadow: 0 0 0 2px var(--color-gray2);
+}
+
+.btn {
+    padding: 15px;
+    border: none;
+    color: var(--color-white);
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1.1rem;
+    transition: .2s;
+    cursor: pointer;
+}
+a{
+    color: var(--color-white);
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover{
+    text-decoration: underline;
+}
+hr{
+    width: 100%;
+    border: 1px solid var(--color-gray);
+}
+P{
+    text-align: center;
+    color: white;
+}
+
+.btn-enter{
+    background-color: var(--color-green);
+}
+.btn-enter:hover{
+    background-color: darkgreen;
+}
+
+.btn-create-account{
+    background-color: var(--color-green);
+    width: auto;
+}
+.btn-create-account:hover{
+    background-color: var(--color-green2);
+}
+
+.content-info h1{
+    color: white;
+    font-size: 4rem;
+    margin: 0;
+    margin-top: -180px;
+    text-align: center;
+    margin-right: 125px;
+    padding-right: 100px;
+    position: relative;
+    left: -120px;
+    z-index: -1;
+}
+
+.content-info h3{
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0;
+    color: white;
+    z-index: -1;
+    position: relative;
+    left: -120px;
+}
+.botao {
+    padding: 15px;
+    border: none;
+    color: var(--color-white);
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1.1rem;
+    transition: .2s;
+    cursor: pointer;
+}
+.estocagem {
+    margin-right: -90px;
+    width: 300px;
+    position: relative;
+    top: 300px;
+    z-index: -2;
+}
+/*estilo da pagina inicial paia*/
+.artezil h1, .artezil h3, .artezil h6 {
+    position: relative;
+    text-align: center;
+    margin-top: 0px; 
+    top: 200px;
+    margin-left: 200px;
+    padding-top: 10px; 
+    padding-bottom: 0px; 
+    color: white;
+    width: 500px;
+    transform: scale(1.5);
+        
+}
+.mojodojo {
+    position: relative;
+    margin-top: 150px;
+    left: 100px;
+    width: 280px;
+    z-index: -1;
+}
+

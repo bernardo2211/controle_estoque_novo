@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300&family=Roboto&display=swap");
+/* SideBar*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+:root {
+    --color-white: white;
+    --color-gray: #f0f2f5;
+    --color-gray2: #dddfe2;
+    --color-dark: #1d2129;
+    --color-blue: #1b74e4;
+    --color-blue2: #166fe5;
+    --color-green: #42b72a;
+    --color-green2: #36a420;
+    --color-body: #00BF63;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-body);
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+}
+.dark-theme{
+    --color-body: var(--color-dark)
+}
+
+nav.menu-lateral{
+    width: 80px;
+    height: 100%;
+    background-color: #202020;
+    padding: 40px 0 40px 1%;
+    box-shadow: 3px 0 0 rgb(42, 170, 42);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    overflow: hidden;
+    transition: .5s;
+    z-index: 1;
+}
+
+nav.menu-lateral.expandir{
+    width: 300px;
+}
+
+.btn-expandir{
+    width: 100%;
+    padding-left: 10px;
+}
+
+.btn-expandir >i{
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.Ideau {
+    width: 100%;
+    display: flex;
+    padding-right: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 500px;
+    position: absolute;
+    
+}
+
+ul{
+    height: 100%;
+    list-style-type: none;
+}
+
+ul li.item-menu{
+    transition: .1s;
+}
+
+ul li.ativo{
+    background-color: rgb(22, 141, 22);
+}
+
+ul li.item-menu:hover{
+    background: rgb(49, 48, 48);
+}
+
+ul li.item-menu a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 20px 4%;
+    display: flex;
+    margin-bottom: 20px;
+    line-height: 40px;
+}
+
+ul li.item-menu a .txt-link{
+    margin-left: 70px;
+    transition: 1s;
+    opacity: 0;
+}
+
+nav.menu-lateral.expandir .txt-link{
+    margin-left: 40px;
+    opacity: 1;
+}
+
+ul li.item-menu a .icon >i{
+    font-size: 30px;
+    margin-left: 10px;
+}
+
+/*dedcorasao do adicina produto*/
+.add{
+    text-align: center;
+}
+.beastars{
+    position: relative;
+    align-content: center;
+    background-color: #42b72a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2px;
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 3px;
+    text-align: center;
+    
+   
+}
+
+.titungos{
+    position: relative;
+    text-align: center;
+    
+}
+.rudiboga{
+    position: relative;
+    margin-left: -210px;
+    transform: scale(1.3);
+    padding: 15px;
+    margin-top: 125px;
+    color: white;
+    
+}
+
+.gremio{
+    position: relative;
+    margin-top: 60px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 2px 4px, rgb(0 0 0 / 10%) 0px 8px 16px;background-color: #353535;
+    border-radius: 8px;
+    padding: 30px;
+    right: -195px ;
+}
+.mulher{
+    margin-right: -90px;
+    width: 300px;
+    position: relative;
+    top: 50px;
+    z-index: -2;
+    right: 300px;
+    transform: scale(0.85);
+}
+
+.fonte{
+    color: #00BF63;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+    <head th:replace="~{base :: head}"></head>
+
+    <body>
+
+        <div th:replace="~{base :: sidebar}"></div>
+
+        <div th:replace="~{base :: menutop}"></div>
+
+        <div class="neymarfiel">
+            <h1 class="mastermega">Lista de Produto</h1>
+
+            <a class="mastermega" th:href="@{/adicionarproduto}">Adicionar
+                Produto</a>
+            <div class="luisaeusintosuafalta">
+                <table>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Unidade</th>
+                        <th>Mínimo</th>
+                        <th>Saldo Inicial</th>
+                        <th>Estoque Atual</th>
+                    </tr>
+                    <tbody th:each="produto: ${produtos}">
+                        <tr>
+                            <td th:text="${produto.codigoProduto}"></td>
+                            <td th:text="${produto.nomeProduto}"></td>
+                            <td th:text="${produto.unidade}"></td>
+                            <td th:text="${produto.minimo}"></td>
+                            <td th:text="${produto.saldoInicial}"></td>
+                            <td th:text="${produto.estoqueAtual}"></td>
+                            <td>
+                                <a
+                                    href="@{/deletarproduto(id=${produto.codigoProduto})}"
+                                    class="deletecolor" type="submit">DELETE</a>
+
+                                    
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+
+</html>

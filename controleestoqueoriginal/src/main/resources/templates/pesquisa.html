@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/pesquisacss.css}">
+    <title>Controle de estoque</title>
+</head>
+<body onload="carregarTotalEstoque('totalEstoque')">
+
+<!--SideBar-->
+<nav class="menu-lateral">
+    <div class="btn-expandir">
+        <i class="bi bi-list" id="btn-exp"></i>
+    </div>
+    <div class="Ideau">
+        <a href="https://www.passofundo.ideau.com.br/">
+            <img th:src="@{/images/logo-ideau.svg}" style="height: 60px; font-weight: 60px;" alt="Ideau Logo">
+        </a>
+    </div>
+    <ul>
+        <li class="item-menu ativo">
+            <a th:href="@{/}">
+                <span class="icon"><i class="bi bi-house"></i></span>
+                <span class="txt-link">Ínicio</span>
+            </a>
+        </li>
+        <li class="item-menu">
+            <a th:href="@{/Login}">
+                <span class="icon"><i class="bi bi-person-circle"></i></span>
+                <span class="txt-link">Usuário</span>
+            </a>
+        </li>
+        <li class="item-menu" id="dark-mode-toggle">
+            <a href="#">
+                <span class="icon"><i class="bi bi-moon-stars-fill"></i></span>
+                <span class="txt-link">DarkMode</span>
+            </a>
+        </li>
+        <li class="item-menu">
+            <a th:href="@{/pesquisa}">
+                <span class="icon"><i class="bi bi-search"></i></span>
+                <span class="txt-link">Pesquisar</span>
+            </a>
+        </li>
+        <li class="item-menu">
+            <a href="https://www.google.com.br/">
+                <span class="icon"><i class="bi bi-box-arrow-left"></i></span>
+                <span class="txt-link">Sair</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!--Botões de cima-->
+<div class="botao">
+    <a th:href="@{/}">
+        <button class="top-button">Inicio</button>
+    </a>
+    <a th:href="@{/Login}">           
+        <button class="top-button">Cadastro/login</button>
+    </a>
+    <a th:href="@{/criadores}">
+        <button class="top-button">Criadores</button>
+    </a>
+</div>   
+
+<div class="banquinhodials">
+    <h1 class="felipeheroi">Armazenamento</h1>
+    <ul>
+        <p class="estoiques"><span id="totalEstoque"></span></p>
+    </ul>
+    <div class="walterw">
+        <img th:src="@{/images/cisentista.png}">
+    </div>
+</div>
+
+<!-- Sidebar para selecionar quantidades -->
+<div id="sidebarprod" class="sidebarprod">
+    <div class="sidebar-contentprod">
+        <span class="close">&times;</span>
+        <form class="update" th:action="@{/atualizar}" th:object="${produto}" method="POST">
+            <input type="hidden" name="_method" value="PUT" />
+            <table class="fonte">
+                <thead>
+                    <tr class="fonte">
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Data de Entrada</th>
+                        <th>Unidade (kg)</th>
+                        <th>Quantidade</th>
+                        <th>Fornecedor</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody th:each="produto : ${produtos}">
+                    <tr>
+                        <td th:text="${produto.codigoProduto}" class="fonte-pequena"></td>
+                        <td th:text="${produto.nomeProduto}" class="fonte-pequena"></td>
+                        <td th:text="${#dates.format(produto.dataEntrada, 'dd/MM/yyyy')}" class="fonte-pequena"></td>
+                        <td th:text="${produto.unidade}" class="fonte-pequena"></td>
+                        <td th:text="${produto.quantidade}" class="fonte-pequena"></td>
+                        <td th:text="${produto.fornecedor}" class="fonte-pequena"></td>
+                        <td>
+                            <input type="number" name="quantidade[${produto.codigoProduto}]" min="0" placeholder="Quantidade">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit">Finalizar Pedido</button>
+        </form>
+    <!--<h2>Selecionar Quantidades</h2>
+        <div id="selectedItems"></div> --> <!-- Contêiner para itens selecionados -->
+    </div>
+</div>
+
+<button id="openSidebarBtn" class="open-sidebar-btn">Fazer Pedido</button>
+
+<div class="neymarfiel">
+    <h1 class="mastermega">Lista de Produto</h1>
+    <a class="megamentepalmeirense" th:href="@{/adicionar}">Adicionar Produto</a>
+    <div class="bode">
+        <div class="fondo">
+            <input type="text" placeholder="Buscar" oninput="buscarProduto(this.value)">
+            <i class="bi bi-search"></i>
+        </div>
+    </div>
+    <div class="luisaeusintosuafalta">
+        <table class="fonte">
+            <thead>
+                <tr class="fonte">
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Data de Entrada</th>
+                    <th>Unidade (kg)</th>
+                    <th>Quantidade</th>
+                    <th>Fornecedor</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody th:each="produto : ${produtos}">
+                <tr>
+                    <td th:text="${produto.codigoProduto}" class="fonte-pequena"></td>
+                    <td th:text="${produto.nomeProduto}" class="fonte-pequena"></td>
+                    <td th:text="${#dates.format(produto.dataEntrada, 'dd/MM/yyyy')}" class="fonte-pequena"></td>
+                    <td th:text="${produto.unidade}" class="fonte-pequena"></td>
+                    <td th:text="${produto.quantidade}" class="fonte-pequena"></td>
+                    <td th:text="${produto.fornecedor}" class="fonte-pequena"></td>
+                    <td>
+                        <button class="selectBtn" data-item-id="${produto.codigoProduto}" data-item-name="${produto.nomeProduto}">Selecionar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script th:src="@{/js/1.js}"></script>
+<script th:src="@{/js/modoescuro.js}"></script>
+
+</body>
+</html>
