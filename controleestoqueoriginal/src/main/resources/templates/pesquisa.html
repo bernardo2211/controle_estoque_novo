@@ -80,7 +80,7 @@
 <div id="sidebarprod" class="sidebarprod">
     <div class="sidebar-contentprod">
         <span class="close">&times;</span>
-        <form class="update" th:action="@{/atualizar}" th:object="${produto}" method="POST">
+        <form class="update" th:action="@{/atualizar}" method="post">
             <input type="hidden" name="_method" value="PUT" />
             <table class="fonte">
                 <thead>
@@ -103,15 +103,13 @@
                         <td th:text="${produto.quantidade}" class="fonte-pequena"></td>
                         <td th:text="${produto.fornecedor}" class="fonte-pequena"></td>
                         <td>
-                            <input type="number" name="quantidade[${produto.codigoProduto}]" min="0" placeholder="Quantidade">
+                            <input type="number" name="quantidade" min="0" placeholder="Quantidade">
                         </td>
                     </tr>
                 </tbody>
             </table>
             <button type="submit">Finalizar Pedido</button>
         </form>
-    <!--<h2>Selecionar Quantidades</h2>
-        <div id="selectedItems"></div> --> <!-- Contêiner para itens selecionados -->
     </div>
 </div>
 

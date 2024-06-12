@@ -43,8 +43,6 @@ public class EstoqueController {
     ProdutoRepository produtoRepo;
 
     @Autowired
-    private ProdutoRepository productRepository;
-
     private ProdutoService produtoService;
 
 
@@ -85,42 +83,13 @@ public class EstoqueController {
 
     }
     
-   @RequestMapping(value = "/atualizar", method = {RequestMethod.PUT, RequestMethod.POST})
-    public String atualizarProdutos(@RequestParam Map<String, String> parametros) {
-        for (String key : parametros.keySet()) {
-            if (key.startsWith("quantidade[")) {
-                Long codigoProduto = Long.valueOf(key.substring(11, key.length() - 1));
-                int quantidade = Integer.parseInt(parametros.get(key));
-                produtoService.reduzirEstoque(codigoProduto, quantidade);
-            }
-        }
-        return "redirect:/pesquisa";
-    }
-    
+    @RequestMapping(value = "/atualizar", method = {RequestMethod.PUT, RequestMethod.POST})
+public String atualizarProdutos(@RequestParam("quantidade") int quantidade) {
+    produtoService.reduzirEstoque(null, quantidade);
+    return "redirect:/pesquisa";
+}
 
 }
 
     
-     /*  @GetMapping("/products")
-      public String listProducts(Model model) {
-          model.addAttribute("produtos", productRepository.findAll());
-          return "product-list";
-      }
-  
-      @GetMapping("/products/edit/{codigoProduto}")
-      public String editProduct(@PathVariable ("codigoProduto") Long codigoProduto , Model model) {
-          Produto product = productRepository.findById(codigoProduto).orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + codigoProduto));
-          model.addAttribute("product", product);
-          return "edit-product";
-      }
-  
-        @PostMapping("/products/update/{codigoProduto}")
-    public String updateProduct(@PathVariable("codigoProduto") Long codigoProduto, @RequestParam Integer quantidade) {
-        Produto product = productRepository.findById(codigoProduto).orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + codigoProduto));
-        product.setQuantidade(quantidade);
-        productRepository.save(product);
-        return "pesquisa"; // Redireciona para a página de produtos após a atualização
-    }
-*/
-
-
+    
