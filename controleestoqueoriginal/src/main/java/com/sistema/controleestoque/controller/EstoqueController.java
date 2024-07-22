@@ -2,8 +2,10 @@ package com.sistema.controleestoque.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +34,7 @@ import com.sistema.controleestoque.repository.ProdutoRepository;
 import com.sistema.controleestoque.service.ProdutoService;
 
 @Controller
+@SessionAttributes("updatedProdutos")
 public class EstoqueController {
 
     @InitBinder
@@ -45,24 +50,10 @@ public class EstoqueController {
     @Autowired
     private ProdutoService produtoService;
 
-
-    //@GetMapping("/")
-    //public String index(Model model){
-
-        //return "home";
-
-    //}
-
-
     @GetMapping("/listadeprodutos")
     public String listadeproduto(Model model){
         
         List<Produto> produtos = produtoRepo.findAll();
-        
-        for (Produto produto : produtos) {
-            System.out.println(produto.getNomeProduto());
-        }
-
         model.addAttribute("produtos", produtos);
 
         return "/produto/listadeprodutos";
@@ -71,25 +62,28 @@ public class EstoqueController {
 
     @GetMapping("/adicionarproduto")
     public String adicionarproduto(){        
-  
         return "/produto/adicionarproduto";
-
     }
 
     @PostMapping(value = "/gravarproduto",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String gravarproduto(@ModelAttribute Produto produto, Model model){
         produtoRepo.save(produto);
         return "redirect:/pesquisa";
-
     }
     
-    @RequestMapping(value = "/atualizar", method = {RequestMethod.PUT, RequestMethod.POST})
-public String atualizarProdutos(@RequestParam("quantidade") int quantidade) {
-    produtoService.reduzirEstoque(null, quantidade);
-    return "redirect:/pesquisa";
-}
-
-}
-
+    @PostMapping("/updateQuantities")
+    public ModelAndView updateQuantities(@RequestParam("codigosProduto") Long[] codigosProduto, @RequestParam("quantidades") String[] quantidades) {
+        if (codigosProduto.length != quantidades.length) {
+        }
     
-    
+        List<Produto> updatedProdutos = new ArrayList<>();
+        for (int i = 0; i < codigosProduto.length; i++) {
+            if (!quantidades[i].isEmpty()) {
+                int quantidade = Integer.parseInt(quantidades[i]);
+                Produto produto = produtoService.updateProductQuantity(codigosProduto[i], quantidade);
+                updatedProdutos.add(produto);
+            }
+        }
+        return new ModelAndView("redirect:/generateReport");
+    }
+    }

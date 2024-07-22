@@ -165,7 +165,7 @@ tr:hover {
     position: relative;
     align-items: center;
     margin-top: 30px;
-    margin-left: -100px;
+    margin-left: -50px;
     width: 30px;
 }
 
@@ -274,9 +274,6 @@ tr:hover {
 }
 
 
-
-
-
 button {
     padding: 10px 20px;
     cursor: pointer;
@@ -341,3 +338,5 @@ button {
     right: 20px;
     z-index: 2;
 }
+
+

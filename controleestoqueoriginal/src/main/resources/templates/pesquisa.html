@@ -80,8 +80,8 @@
 <div id="sidebarprod" class="sidebarprod">
     <div class="sidebar-contentprod">
         <span class="close">&times;</span>
-        <form class="update" th:action="@{/atualizar}" method="post">
-            <input type="hidden" name="_method" value="PUT" />
+        <form action="/updateQuantities" method="post">
+          
             <table class="fonte">
                 <thead>
                     <tr class="fonte">
@@ -89,9 +89,9 @@
                         <th>Nome</th>
                         <th>Data de Entrada</th>
                         <th>Unidade (kg)</th>
-                        <th>Quantidade</th>
+                        <th>Quantidade Atual</th>
                         <th>Fornecedor</th>
-                        <th>Ação</th>
+                        <th>Atualizar Quantidade</th>
                     </tr>
                 </thead>
                 <tbody th:each="produto : ${produtos}">
@@ -103,13 +103,18 @@
                         <td th:text="${produto.quantidade}" class="fonte-pequena"></td>
                         <td th:text="${produto.fornecedor}" class="fonte-pequena"></td>
                         <td>
-                            <input type="number" name="quantidade" min="0" placeholder="Quantidade">
+                            <input type="number" name="quantidades" min="0" class="fonte-pequena"/>
+                            <input type="hidden" name="codigosProduto" th:value="${produto.codigoProduto}"/>
+                            <input type="hidden" name="produtoAtualizado" value="true"/> <!-- Adiciona um campo oculto indicando que o produto foi atualizado -->
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <br>
             <button type="submit">Finalizar Pedido</button>
         </form>
+        
+    
     </div>
 </div>
 
@@ -134,7 +139,6 @@
                     <th>Unidade (kg)</th>
                     <th>Quantidade</th>
                     <th>Fornecedor</th>
-                    <th>Ação</th>
                 </tr>
             </thead>
             <tbody th:each="produto : ${produtos}">
@@ -145,13 +149,11 @@
                     <td th:text="${produto.unidade}" class="fonte-pequena"></td>
                     <td th:text="${produto.quantidade}" class="fonte-pequena"></td>
                     <td th:text="${produto.fornecedor}" class="fonte-pequena"></td>
-                    <td>
-                        <button class="selectBtn" data-item-id="${produto.codigoProduto}" data-item-name="${produto.nomeProduto}">Selecionar</button>
-                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
+    
 </div>
 <script th:src="@{/js/1.js}"></script>
 <script th:src="@{/js/modoescuro.js}"></script>

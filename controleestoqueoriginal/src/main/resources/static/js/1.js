@@ -20,17 +20,19 @@ btnExp.addEventListener('click', function(){
 
 
 function buscarProduto(termo) {
-    var linhas = document.querySelectorAll('.fonte-pequena');
+    var linhas = document.querySelectorAll('tbody tr');
 
     linhas.forEach(function(linha) {
-        var nomeProduto = linha.parentElement.querySelector('td:nth-child(2)').textContent.toLowerCase();
+        var nomeProduto = linha.querySelector('td:nth-child(2)').textContent.toLowerCase();
         if (nomeProduto.includes(termo.toLowerCase())) {
-            linha.parentElement.style.display = 'table-row';
+            linha.style.display = '';
         } else {
-            linha.parentElement.style.display = 'none';
+            linha.style.display = 'none';
         }
     });
 }
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const sidebarprod = document.getElementById('sidebarprod');
     const openSidebarBtn = document.getElementById('openSidebarBtn');
@@ -47,28 +49,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('click', (event) => {
-        if (event.target == sidebarprod) {
+        if (event.target === sidebarprod) {
             sidebarprod.style.width = '0';
             selectedItemsDiv.innerHTML = '';
         }
     });
 
-    document.querySelectorAll('.selectBtn').forEach(button => {
-        button.addEventListener('click', () => {
-            const itemId = button.getAttribute('data-item-id');
-            const itemName = button.getAttribute('data-item-name');
-            const existingItem = document.getElementById(`item-${itemId}`);
-            if (!existingItem) {
-                const itemDiv = document.createElement('div');
-                itemDiv.id = `item-${itemId}`;
-                itemDiv.innerHTML = `
-                    <span>${itemName}</span>
-                    <input type="hidden" name="items[${itemId}].itemId" value="${itemId}">
-                    <input type="number" name="items[${itemId}].quantity" placeholder="Quantidade" data-item-id="${itemId}">
-                `;
-                selectedItemsDiv.appendChild(itemDiv);
+    function openReportInNewTab(url) {
+        var win = window.open(url, '_blank');
+        win.focus();
+    }
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const queryString = new URLSearchParams(formData).toString();
+        
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.redirected) {
+                openReportInNewTab(response.url);
             }
-        });
-    });
-});
+        }).catch(error => console.error('Error:', error));
+    }
+
+})
 
