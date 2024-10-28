@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" th:href="@{/css/pesquisacss.css}">
+    <link rel="stylesheet" th:href="@{/css/pesquisacss.css}"> 
     <title>Controle de estoque</title>
 </head>
 <body onload="carregarTotalEstoque('totalEstoque')">
@@ -27,7 +27,7 @@
             </a>
         </li>
         <li class="item-menu">
-            <a th:href="@{/Login}">
+            <a th:href="@{/escolha}">
                 <span class="icon"><i class="bi bi-person-circle"></i></span>
                 <span class="txt-link">Usuário</span>
             </a>
@@ -58,7 +58,7 @@
     <a th:href="@{/}">
         <button class="top-button">Inicio</button>
     </a>
-    <a th:href="@{/Login}">           
+    <a th:href="@{/escolha}">           
         <button class="top-button">Cadastro/login</button>
     </a>
     <a th:href="@{/criadores}">
@@ -80,6 +80,18 @@
 <div id="sidebarprod" class="sidebarprod">
     <div class="sidebar-contentprod">
         <span class="close">&times;</span>
+
+        <h1 class="mastermegabar">SELEÇÃO DE PRODUTOS</h1>
+
+        <div class="bode">
+            <div class="fondo">
+                <input type="text" placeholder="Buscar" oninput="buscarProduto(this.value)">
+                <i class="bi bi-search"></i>
+            </div>
+            <br>
+            <br>
+            
+        </div>
         <form action="/updateQuantities" method="post">
           
             <table class="fonte">
@@ -120,15 +132,13 @@
 
 <button id="openSidebarBtn" class="open-sidebar-btn">Fazer Pedido</button>
 
+
+
 <div class="neymarfiel">
     <h1 class="mastermega">Lista de Produto</h1>
     <a class="megamentepalmeirense" th:href="@{/adicionar}">Adicionar Produto</a>
-    <div class="bode">
-        <div class="fondo">
-            <input type="text" placeholder="Buscar" oninput="buscarProduto(this.value)">
-            <i class="bi bi-search"></i>
-        </div>
-    </div>
+  
+
     <div class="luisaeusintosuafalta">
         <table class="fonte">
             <thead>
@@ -139,23 +149,110 @@
                     <th>Unidade (kg)</th>
                     <th>Quantidade</th>
                     <th>Fornecedor</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody th:each="produto : ${produtos}">
                 <tr>
-                    <td th:text="${produto.codigoProduto}" class="fonte-pequena"></td>
-                    <td th:text="${produto.nomeProduto}" class="fonte-pequena"></td>
-                    <td th:text="${#dates.format(produto.dataEntrada, 'dd/MM/yyyy')}" class="fonte-pequena"></td>
-                    <td th:text="${produto.unidade}" class="fonte-pequena"></td>
-                    <td th:text="${produto.quantidade}" class="fonte-pequena"></td>
-                    <td th:text="${produto.fornecedor}" class="fonte-pequena"></td>
+                    <form onsubmit="return atualizarProduto(this);">
+                        <!-- Campo oculto para código do produto -->
+                        <input type="hidden" name="codigoProduto" th:value="${produto.codigoProduto}" />
+        
+                        <td th:text="${produto.codigoProduto}" class="fonte-pequena"></td>
+                        <td><input type="text" name="nomeProduto" th:value="${produto.nomeProduto}" readonly></td>
+                        <td><input type="date" name="dataEntrada" th:value="${#dates.format(produto.dataEntrada, 'yyyy-MM-dd')}" readonly></td>
+                        <td><input type="text" name="unidade" th:value="${produto.unidade}" readonly></td>
+                        <td><input type="number" name="quantidade" th:value="${produto.quantidade}" readonly></td>
+                        <td><input type="text" name="fornecedor" th:value="${produto.fornecedor}" readonly></td>
+        
+                        <td>
+                             <!-- Botão Editar -->
+                            <button type="button" class="botaox" onclick="ativarEdicao(this)">
+                                <img th:src="@{/images/edit.png}" alt="Editar" class="icon-btn">
+                            </button>
+                            <!-- Botão Salvar como um submit -->
+                            <button type="submit" class="botaox" style="display:none;">
+                                <img th:src="@{/images/save.png}" alt="Salvar" class="icon-btn">
+                            </button>
+                          <!-- Botão de Excluir com confirmação -->
+                            <a th:href="@{/excluirproduto/{codigo}(codigo=${produto.codigoProduto})}" class="botaox"
+                                onclick="return confirm('Tem certeza que deseja excluir este produto?');">
+                                <img th:src="@{/images/delete.png}" alt="Excluir" class="icon-btn">
+                            </a>
+
+                        </td>
+                    </form>
                 </tr>
             </tbody>
         </table>
     </div>
     
+    <script>
+        function ativarEdicao(button) {
+            // Acha o <tr> pai do botão clicado
+            var row = button.closest('tr');
+            
+            // Habilita todos os inputs da linha para edição
+            var inputs = row.querySelectorAll('input');
+            inputs.forEach(function(input) {
+                input.removeAttribute('readonly');
+            });
+    
+            // Mostra o botão "Salvar"
+            var saveButton = row.querySelector('button[type="submit"]');
+            saveButton.style.display = 'inline-block';
+    
+            // Esconde o botão "Editar"
+            button.style.display = 'none';
+        }
+    
+        function atualizarProduto(form) {
+            var formData = new FormData(form);
+    
+            var produto = {};
+            formData.forEach((value, key) => {
+                // Para garantir que o tipo correto seja atribuído
+                if (key === 'dataEntrada') {
+                    produto[key] = new Date(value); // Converte a data para o formato correto
+                } else {
+                    produto[key] = value;
+                }
+            });
+    
+            fetch('/atualizarproduto', {
+                method: 'POST',
+                body: JSON.stringify(produto),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Erro na atualização do produto.');
+            })
+            .then(data => {
+                if (data.success) {
+                    alert('Produto atualizado com sucesso');
+                    location.reload();  // Recarrega a página para atualizar a tabela
+                } else {
+                    alert('Erro ao atualizar produto: ' + data.message);
+                }
+            }).catch(error => console.error('Erro:', error));
+    
+            return false;  // Impede o envio tradicional do formulário
+        }
+    </script>
+    
+    
+    
+    
+    
+        
+    
 </div>
 <script th:src="@{/js/1.js}"></script>
+
 <script th:src="@{/js/modoescuro.js}"></script>
 
 </body>

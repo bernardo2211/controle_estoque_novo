@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/escolha.css}" rel="stylesheet" />
+    <title>Escolha</title>
+</head>
+<body th:style="'background-image: url(' + @{/images/file.png} + ');'">
+
+    <a href="https://www.passofundo.ideau.com.br/">
+        <img class="ideau" th:src="@{/images/logo-ideau.svg}" alt="Logo Ideau">
+    </a>
+
+    <div class="container">
+        <img class="adm" th:src="@{/images/adm.jpg}" alt="Administração">
+        <img class="prof" th:src="@{/images/prof.jpg}" alt="Professor">
+    </div>
+
+    <div class="botoesadms">
+        <a th:href="@{/Login}">
+            <button class="admtxt">Administração</button>
+        </a>
+        <a th:href="@{/Login}">
+            <button class="proftxt">Professor</button>
+        </a>
+        
+    </div>
+</body>
+</html>

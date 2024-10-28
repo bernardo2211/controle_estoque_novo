@@ -161,11 +161,14 @@ th, td {
 tr:hover {
     background-color: #353535;
 }
-.luisaeusintosuafalta{
+
+.luisaeusintosuafalta {
     position: relative;
     align-items: center;
-    margin-top: 30px;
-    margin-left: -50px;
+    margin-top: 30px; /* Mantém o espaçamento superior */
+    margin-left: -155px;
+    margin-bottom: 70px; /* Adiciona margem inferior para distanciar da parte de baixo */
+    padding-bottom: 40px; /* Espaçamento adicional na parte inferior */
     width: 30px;
 }
 
@@ -201,6 +204,47 @@ tr:hover {
     width: 70%;
     z-index: 1;
 }
+
+
+    /* CSS para ajustar caixas de texto */
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+        width: 100px; /* Ajuste a largura conforme necessário */
+        padding: 0px; /* Diminua o preenchimento para reduzir a altura */
+        font-size: 14px; /* Ajuste o tamanho da fonte para reduzir a altura */
+    }
+
+    input[readonly] {
+        background-color: #f0f0f0; /* Fundo claro para campos somente leitura */
+        border: 1px solid #ccc; /* Borda suave para campos somente leitura */
+        cursor: not-allowed; /* Indica que o campo é somente leitura */
+    }
+
+    .botaox {
+        width: auto; /* Para garantir que o botão se ajuste ao tamanho da imagem */
+        padding: 5px; /* Reduzindo o padding para economizar espaço */
+       
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;
+        display: inline-block; /* Exibir os botões em linha */
+        margin-right: 5px; /* Espaço entre os botões */
+        vertical-align: middle; /* Alinhar verticalmente no meio */
+    }
+    
+    td {
+        white-space: nowrap; /* Para evitar quebra de linha dentro da célula */
+    }
+    
+    .icon-btn {
+        width: 20px; /* Defina o tamanho desejado da imagem */
+        height: 20px; /* Defina o tamanho desejado da imagem */
+    }
+    
+    
+    
 /* estilo botao*/
 .top-button {
     padding: 10px 60px;
@@ -224,6 +268,7 @@ tr:hover {
 }
 
 /* barra de pesquisa*/
+
 .bode {
     display: flex;
     justify-content: center;
@@ -231,8 +276,9 @@ tr:hover {
     position: relative;
     margin-left: -125px;
     margin-top: 5px;
-    margin-bottom: -20px;
+    margin-bottom: 10px; /* Aumente a margem inferior para distanciar a barra de pesquisa */
 }
+
 
 .fondo {
     display: flex;
@@ -337,6 +383,18 @@ button {
     bottom: 20px;
     right: 20px;
     z-index: 2;
+}
+
+.mastermegabar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: -1;
+    color: #dddfe2;  
+    text-align: center; /* Centraliza o texto horizontalmente */
+    margin-left: -97px; /* Remove margens laterais para centralizar */
+    padding-top: 20px; /* Adiciona um espaço superior opcional */
 }
 
 

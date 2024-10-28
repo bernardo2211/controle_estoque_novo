@@ -20,17 +20,21 @@ btnExp.addEventListener('click', function(){
 
 
 function buscarProduto(termo) {
-    var linhas = document.querySelectorAll('tbody tr');
+    const query = termo.toLowerCase(); // Transforma o termo em minúsculas
+    const linhas = document.querySelectorAll('.fonte tbody tr'); // Seleciona todas as linhas da tabela
 
     linhas.forEach(function(linha) {
-        var nomeProduto = linha.querySelector('td:nth-child(2)').textContent.toLowerCase();
-        if (nomeProduto.includes(termo.toLowerCase())) {
-            linha.style.display = '';
+        const nomeProduto = linha.querySelector('td:nth-child(2)').textContent.toLowerCase(); // Obtém o texto da segunda célula (nome do produto)
+        
+        // Verifica se o nome do produto inclui o termo da busca
+        if (nomeProduto.includes(query)) {
+            linha.style.display = ''; // Mostra a linha se o nome incluir o termo
         } else {
-            linha.style.display = 'none';
+            linha.style.display = 'none'; // Esconde a linha se não incluir
         }
     });
 }
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -78,4 +82,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 })
+
+function ativarEdicao(button) {
+    // Acha o <tr> pai do botão clicado
+    var row = button.closest('tr');
+    
+    // Habilita todos os inputs da linha
+    var inputs = row.querySelectorAll('input');
+    inputs.forEach(function(input) {
+        input.removeAttribute('readonly');
+    });
+
+    // Mostra o botão "Salvar"
+    var saveButton = row.querySelector('button[type="submit"]');
+    saveButton.style.display = 'inline-block';
+
+    // Esconde o botão "Editar"
+    button.style.display = 'none';
+}
+
+
+
+
 

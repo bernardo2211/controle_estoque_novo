@@ -130,6 +130,10 @@ public class HomeController implements Initializable {
     public String adicionar() {
         return "produto/adicionarproduto";
     }
+    @GetMapping("/escolha")
+    public String escolha(Model model) {
+        return "escolha";
+    }
    
     public Produto item(){
         return acao.findById(codigo).get();

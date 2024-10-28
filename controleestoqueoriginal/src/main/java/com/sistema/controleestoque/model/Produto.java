@@ -11,7 +11,6 @@ import jakarta.persistence.TemporalType;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -62,9 +61,8 @@ public class Produto {
         return dataEntrada.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
-    public void setCodigoProduto(int int1) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setCodigoProduto'");
+    public void setCodigoProduto(Long codigoProduto) {
+        this.codigoProduto = codigoProduto; // Implementação correta do setter
     }
 
     public String toString() {
@@ -74,7 +72,6 @@ public class Produto {
     }
 
     public void setId(long l) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setId'");
+        // Você pode remover ou implementar esse método se não for necessário
     }
 }
