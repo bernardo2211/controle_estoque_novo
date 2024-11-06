@@ -18,13 +18,15 @@
     </div>
 
     <div class="botoesadms">
-        <a th:href="@{/Login}">
+        <!-- Redireciona para o login de Administrador -->
+        <a th:href="@{/loginAdmin}">
             <button class="admtxt">Administração</button>
         </a>
-        <a th:href="@{/Login}">
+        
+        <!-- Redireciona para o login de Usuário Comum (Professor) -->
+        <a th:href="@{/loginUser}">
             <button class="proftxt">Professor</button>
         </a>
-        
     </div>
 </body>
 </html>

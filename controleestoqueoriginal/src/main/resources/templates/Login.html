@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li class="item-menu">
-                <a th:href="@{/escolha}">
+                <a th:href="@{/Login}">
                     <span class="icon"><i class="bi bi-person-circle"></i></span>
                     <span class="txt-link">Usuário</span>
                 </a>
@@ -63,7 +63,7 @@
         <a th:href="@{/}">
         <button class="top-button">Inicio</button>
         </a>
-        <a th:href="@{/escolha}">           
+        <a th:href="@{/Login}">           
         <button class="top-button">Cadastro/login</button>
         </a>
         <a th:href="@{/criadores}">
@@ -74,31 +74,110 @@
         </a>
     </div>   
 
-     <!--humano do estoque-->
-     <div>
-        <img th:src="@{images/inventario (1).png}" alt="imagem-estoque"class="estocagem">
+    <!-- Container do formulário e imagem -->
+<div class="login-container">
+  
+    <!-- Imagem de estoque -->
+    <div class="estocagem-container">
+      <img th:src="@{images/inventario (1).png}" alt="imagem-estoque" class="estocagem">
     </div>
     
-    <!-- formulario de login-->
-    
-    <div class="content">
-        <div class="content-info">
-            <h1>Login</h1>
-            <h3>Prezado associado, insira seus dados para ter acesso ao controle de estoque.</h3>
+    <!-- Formulário de login -->
+    <div class="login-form-container">
+      <form action="/Login" method="post" class="login-form">
+        
+        <!-- Campo de usuário -->
+        <div class="form-group">
+          <label for="username">Usuário:</label>
+          <input type="text" id="username" name="username" required>
         </div>
-        <div class="content-login">
-            <form class="content-login-box">
-                <input type="text" class="inputs" placeholder="Email ou telefone">
-                <input type="password" class="inputs" placeholder="Senha">
-                <button class="btn btn-enter">Entrar</button>
-                <a href="#" class="forgot-password">Esqueceu a senha?</a>
-                <hr>
-                <button class="btn btn-create-account">Criar nova conta</button>
-            </form>
-            <p><strong>Criar uma conta</strong> para um professor, um estudante ou um fornecedor.</p>
+        
+        <!-- Campo de senha -->
+        <div class="form-group">
+          <label for="password">Senha:</label>
+          <input type="password" id="password" name="password" required>
         </div>
+        
+        <!-- Botão de entrar -->
+        <button type="submit">Entrar</button>
+        
+        <!-- Mensagem de erro -->
+        <p id="errorMsg" style="color:red;"></p>
+        
+        <!-- Mensagem de sucesso/erro -->
+        <div>
+          <p th:if="${param.error}" style="color: red;">Usuário ou senha inválidos!</p>
+          <p th:if="${param.logout}" style="color: green;">Você foi desconectado com sucesso!</p>
+        </div>
+      </form>
+      <button id="logoutButton">Logout</button>
+
+      <div th:if="${isAdmin}" style="margin-top: 20px;">
+        <a th:href="@{/cadastro}">
+            <button type="button">Cadastrar Novo Usuário</button>
+        </a>
     </div>
-    <script src="/js/1.js"></script>
-    <script src="/js/modoescuro.js"></script>
+    </div>
+</div>
+
+
+
+    <script>
+        // JavaScript opcional para melhorar o feedback do usuário
+        const form = document.getElementById('loginForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const loginData = {
+                username: formData.get('username'),
+                password: formData.get('password')
+            };
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(loginData)
+                });
+
+                if (response.ok) {
+                    window.location.href = '/pesquisa'; // Redireciona em caso de sucesso
+                } else {
+                    document.getElementById('errorMsg').innerText = 'Credenciais incorretas!';
+                }
+            } catch (error) {
+                console.error('Erro de login:', error);
+                document.getElementById('errorMsg').innerText = 'Erro ao tentar logar. Tente novamente mais tarde.';
+            }
+        });
+
+    </script>
+
+
+<script>
+    document.getElementById("logoutButton").onclick = function() {
+        fetch('/api/logout', {
+            method: 'POST',
+            credentials: 'include' // Incluir cookies para autenticação
+        })
+        .then(response => {
+            if (response.ok) {
+                // Redireciona para a página de login ou outra página
+                window.location.href = "/"; // Mude conforme necessário
+            } else {
+                alert("Erro ao deslogar");
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+    };
+</script>
+
+  <script th:src="@{/js/1.js}"></script>
+  <script th:src="@{/js/dark-mode.js}"></script>
+
 </body>
 </html>

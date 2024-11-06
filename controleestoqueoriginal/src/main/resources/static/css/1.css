@@ -5,7 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Outfit', sans-serif;
-}
+} 
 :root {
     --color-white: white;
     --color-gray: #f0f2f5;
@@ -111,14 +111,7 @@ ul li.item-menu a .icon >i{
     font-size: 30px;
     margin-left: 10px;
 }
-/*Imagem estoque*/
-.estocagem {
-    
-        position: relative; 
-        top: 240px; 
-        left: 23%;
-        width: 200px;    
-}
+
 /* posição botao*/
 .botao{
         display: flex;
@@ -294,5 +287,114 @@ P{
     width: 280px;
     z-index: -1;
 }
-/*escolha*/
+/*login formulario*/
+
+/* Estilo para o container principal que alinha o formulário e a imagem */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 300px;
+    padding: 20px;
+    text-align: left;
+   
+    height: 100vh;
+}
+
+/* Estilo para o container da imagem */
+.estocagem-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.estocagem {
+    width: 300px;
+    height: auto;
+    margin-top: -550px;
+}
+
+/* Estilo para o container do formulário */
+.login-form-container {
+    max-width: 350px;
+    width: 100%;
+    padding: 30px;
+    background-color: #353535;
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+    border: 1px solid #353535;
+    margin-right: -200px;
+}
+
+/* Estilo para o formulário de login */
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.login-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.login-form input:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+}
+
+/* Estilo para todos os botões */
+button {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #3e8e41;
+    transform: translateY(1px);
+}
+
+#logoutButton,
+.login-form button[type="button"] {
+    background-color: #232323; /* botão de logout */
+}
+
+#logoutButton:hover,
+.login-form button[type="button"]:hover {
+    background-color: #e53935;
+}
+
+.login-form button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+button[type="button"] {
+    margin-top: 15px;
+}
 

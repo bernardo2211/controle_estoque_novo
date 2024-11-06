@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle de LOGIN</title>
-    <!-- Formato que estava sendo carregado o css estava errado -->
+    <title>Controle de Estoque</title>
     <link th:href="@{/css/1.css}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     
+    <script th:src="@{/js/1.js}"></script>
+    <script th:src="@{/js/dark-mode.js}"></script>
+
 </head>
 <body>
-    <!--SideBar--> 
+    <!--SideBar-->
     <nav class="menu-lateral">
         <div class="btn-expandir">
             <i class="bi bi-list" id="btn-exp"></i>
@@ -30,7 +32,7 @@
                 </a>
             </li>
             <li class="item-menu">
-                <a th:href="@{/Login}">
+                <a th:href="@{/escolha}">
                     <span class="icon"><i class="bi bi-person-circle"></i></span>
                     <span class="txt-link">Usuário</span>
                 </a>
@@ -56,16 +58,12 @@
             </li>
         </ul>
     </nav>
-    <!--casinha do estoque-->
-    <div>
-        <img th:src="@{/images/estoque.png}" alt="imagem-estoque"class="mojodojo">
-    </div>
     <!--botões de cima-->
     <div class="botao">
         <a th:href="@{/}">
         <button class="top-button">Inicio</button>
         </a>
-        <a th:href="@{/Login}">           
+        <a th:href="@{/escolha}">           
         <button class="top-button">Cadastro/login</button>
         </a>
         <a th:href="@{/criadores}">
@@ -75,15 +73,34 @@
         <button class="top-button">Sair</button>
         </a>
     </div>   
-    
-    <script src="/js/1.js"></script>
-    <!--Textos centrais-->
-    <div class="artezil">
-        <h6>PF - 2023</h6>
-        <h3>Laboratório</h3>
-        <h1>Controle de estoque</h1>
-        <h3>Ideau - 2023</h3>
+
+     <!--humano do estoque-->
+     <div>
+        <img th:src="@{images/inventario (1).png}" alt="imagem-estoque"class="estocagem">
     </div>
+    
+    <!-- formulario de login-->
+    
+    <div class="content">
+        <div class="content-info">
+            <h1>Login - Usuário</h1>
+            <h3>Insira seus dados para acessar o controle de estoque.</h3>
+        </div>
+        <div class="content-login">
+            <form action="/postLogin" method="post">
+                <div>
+                    <label>Username:</label>
+                    <input type="text" name="username" required>
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>            
+        </div>
+    </div>
+    <script src="/js/1.js"></script>
     <script src="/js/modoescuro.js"></script>
 </body>
 </html>

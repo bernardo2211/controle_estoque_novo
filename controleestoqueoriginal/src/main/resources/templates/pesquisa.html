@@ -27,7 +27,7 @@
             </a>
         </li>
         <li class="item-menu">
-            <a th:href="@{/escolha}">
+            <a th:href="@{/Login}">
                 <span class="icon"><i class="bi bi-person-circle"></i></span>
                 <span class="txt-link">Usuário</span>
             </a>
@@ -58,7 +58,7 @@
     <a th:href="@{/}">
         <button class="top-button">Inicio</button>
     </a>
-    <a th:href="@{/escolha}">           
+    <a th:href="@{/Login}">           
         <button class="top-button">Cadastro/login</button>
     </a>
     <a th:href="@{/criadores}">
@@ -136,8 +136,9 @@
 
 <div class="neymarfiel">
     <h1 class="mastermega">Lista de Produto</h1>
-    <a class="megamentepalmeirense" th:href="@{/adicionar}">Adicionar Produto</a>
-  
+    <div th:if="${isAdmin}">
+        <a class="megamentepalmeirense" th:href="@{/adicionar}">Adicionar Produto</a>
+    </div>
 
     <div class="luisaeusintosuafalta">
         <table class="fonte">
@@ -149,7 +150,7 @@
                     <th>Unidade (kg)</th>
                     <th>Quantidade</th>
                     <th>Fornecedor</th>
-                    <th>Ações</th>
+                    <th th:if="${isAdmin}">Ações</th>
                 </tr>
             </thead>
             <tbody th:each="produto : ${produtos}">
@@ -165,22 +166,19 @@
                         <td><input type="number" name="quantidade" th:value="${produto.quantidade}" readonly></td>
                         <td><input type="text" name="fornecedor" th:value="${produto.fornecedor}" readonly></td>
         
-                        <td>
-                             <!-- Botão Editar -->
+                        <td th:if="${isAdmin}">
                             <button type="button" class="botaox" onclick="ativarEdicao(this)">
                                 <img th:src="@{/images/edit.png}" alt="Editar" class="icon-btn">
                             </button>
-                            <!-- Botão Salvar como um submit -->
                             <button type="submit" class="botaox" style="display:none;">
                                 <img th:src="@{/images/save.png}" alt="Salvar" class="icon-btn">
                             </button>
-                          <!-- Botão de Excluir com confirmação -->
                             <a th:href="@{/excluirproduto/{codigo}(codigo=${produto.codigoProduto})}" class="botaox"
                                 onclick="return confirm('Tem certeza que deseja excluir este produto?');">
                                 <img th:src="@{/images/delete.png}" alt="Excluir" class="icon-btn">
                             </a>
-
                         </td>
+                        
                     </form>
                 </tr>
             </tbody>

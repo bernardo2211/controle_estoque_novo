@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PasswordEncoderGenerator",
+            "request": "launch",
+            "mainClass": "com.sistema.util.PasswordEncoderGenerator",
+            "projectName": "controleestoque"
+        },
+        {
+            "type": "java",
+            "name": "PasswordEncoderTest",
+            "request": "launch",
+            "mainClass": "PasswordEncoderTest",
+            "projectName": "controleestoque"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-ControleestoqueApplication<controleestoque>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

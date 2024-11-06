@@ -2,6 +2,10 @@ package com.sistema.controleestoque.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -103,37 +107,57 @@ public class HomeController implements Initializable {
         
       }
 
-    @GetMapping("/")
-    public String index(Model model) {
+      @GetMapping("/")
+      public String index() {
+          return "patp"; // Página principal acessível a todos
+      }
+      
+      @GetMapping("/criadores")
+      public String criadores() {
+          return "criadores"; // Homenagem aos criadores
+      }
+      
+      @GetMapping("/Login")
+      public String loginPage(Model model) {
+          Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+          
+          boolean isAdmin = authentication != null && authentication.getAuthorities().stream()
+                  .anyMatch(role -> role.getAuthority().equals("ROLE_ADMIN"));
+          
+          model.addAttribute("isAdmin", isAdmin); // Passa a variável `isAdmin` para o template
+          
+          return "Login"; // Nome do template de login (ex: login.html)
+      }
+      
+      @GetMapping("/pesquisa")
+      public String pesquisa(Model model) {
+          List<Produto> produtos = produtoRepo.findAllByOrderByNomeProdutoAsc();
+          model.addAttribute("produtos", produtos);
+        // Verifica a role do usuário
+    boolean isAdmin = false;
 
-        return "patp";
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication != null && authentication.isAuthenticated()) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        isAdmin = userDetails.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
     }
 
-    @GetMapping("/criadores")
-    public String criadores(Model model) {
-        return "criadores";
-    }
+    model.addAttribute("isAdmin", isAdmin);
+    return "pesquisa"; // Nome da sua view
+      }
+      @GetMapping("/cadastro")
+      public String pesquisaUSER() {
+          return "cadastroUsuario"; // Página de cadastro
+      }
+      @GetMapping("/adicionar")
+      public String adicionar() {
+          return "produto/adicionarproduto"; // Página para adicionar produtos, restrita a administradores
+      }
+      
 
-    @GetMapping("/Login")
-    public String loginPage() {
-        return "login"; 
-    }
+   
 
-    @GetMapping("/pesquisa")
-    public String pesquisa(Model model) {
-        List<Produto> produtos = produtoRepo.findAllByOrderByNomeProdutoAsc();      
-        model.addAttribute("produtos", produtos);
-        return "pesquisa";
-    }
-
-    @GetMapping("/adicionar")
-    public String adicionar() {
-        return "produto/adicionarproduto";
-    }
-    @GetMapping("/escolha")
-    public String escolha(Model model) {
-        return "escolha";
-    }
    
     public Produto item(){
         return acao.findById(codigo).get();
