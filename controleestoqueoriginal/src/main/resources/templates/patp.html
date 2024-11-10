@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Responsividade</title>
     <!-- Formato que estava sendo carregado o css estava errado -->
-    <link th:href="@{/css/1.css}" rel="stylesheet" />
+   <!-- <link th:href="@{/css/1.css}" rel="stylesheet" />-->
+    <link href="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\css\1.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     
 </head>
@@ -19,7 +20,8 @@
         <div class="Ideau">
             <a href="https://www.passofundo.ideau.com.br/">
                 <!-- Sempre que colocar algum caminho a barra "/" é pra direita-->
-                <img th:src="@{/images/logo-ideau.svg}" style="height: 60px; font-weight: 60px;" alt="Ideau Logo">
+                <img src="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\images\logo-ideau.svg" style="height: 60px; font-weight: 60px;" alt="Ideau Logo">
+                <!-- <img th:src="@{/images/logo-ideau.svg}" style="height: 60px; font-weight: 60px;" alt="Ideau Logo">-->
             </a>
         </div>
         <ul>
@@ -57,9 +59,7 @@
         </ul>
     </nav>
     <!--casinha do estoque-->
-    <div>
-        <img th:src="@{/images/estoque.png}" alt="imagem-estoque"class="mojodojo">
-    </div>
+    
     <!--botões de cima-->
     <div class="botao">
         <a th:href="@{/}">
@@ -76,14 +76,24 @@
         </a>
     </div>   
     
-    <script src="/js/1.js"></script>
+    <script src="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\js\1.js"></script>
+    <!--<script src="/js/1.js"></script>-->
     <!--Textos centrais-->
-    <div class="artezil">
-        <h6>PF - 2023</h6>
-        <h3>Laboratório</h3>
-        <h1>Controle de estoque</h1>
-        <h3>Ideau - 2023</h3>
+    <div class="junta">
+        <div class="artezil">
+            <h6>PF - 2023</h6>
+            <h3>Laboratório</h3>
+            <h1>Controle de estoque</h1>
+            <h3>Ideau - 2023</h3>
+        </div>
+    
+        <div>
+            <img src="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\images\estoque.png" alt="imagem-estoque"class="mojodojo">
+            <!--<img th:src="@{/images/estoque.png}" alt="imagem-estoque"class="mojodojo">-->
+            
+        </div>
     </div>
-    <script src="/js/modoescuro.js"></script>
+    <script src="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\js\modoescuro.js"></script>
+    <!--<script src="/js/modoescuro.js"></script>-->
 </body>
 </html>
