@@ -6,24 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Responsividade</title>
     <!-- Formato que estava sendo carregado o css estava errado -->
-   <!-- <link th:href="@{/css/1.css}" rel="stylesheet" />-->
-    <link href="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\css\1.css" rel="stylesheet" />
+    <link th:href="@{/css/1.css}" rel="stylesheet" />
+       <!--<link href="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\css\1.css" rel="stylesheet" />-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     
 </head>
 <body>
+    <input type="checkbox" id="toggle-sidebar" hidden>
+    <label class="btn-expandir" for="toggle-sidebar">
+        <i class="fa fa-bars"></i>
+    </label>
     <!--SideBar--> 
     <nav class="menu-lateral">
         <div class="btn-expandir">
             <i class="bi bi-list" id="btn-exp"></i>
         </div>
-        <div class="Ideau">
-            <a href="https://www.passofundo.ideau.com.br/">
-                <!-- Sempre que colocar algum caminho a barra "/" é pra direita-->
-                <img src="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\images\logo-ideau.svg" style="height: 60px; font-weight: 60px;" alt="Ideau Logo">
-                <!-- <img th:src="@{/images/logo-ideau.svg}" style="height: 60px; font-weight: 60px;" alt="Ideau Logo">-->
-            </a>
-        </div>
+        
         <ul>
             <li class="item-menu ativo">
                 <a th:href="@{/}">
@@ -51,9 +49,9 @@
                 </a>
             </li>
             <li class="item-menu">
-                <a href="https://www.google.com.br/">
+                <a href="https://www.passofundo.ideau.com.br">
                     <span class="icon"><i class="bi bi-box-arrow-left"></i></span>
-                    <span class="txt-link">Sair</span>
+                    <span class="txt-link">IDEAU</span>
                 </a>
             </li>
         </ul>
@@ -71,13 +69,13 @@
         <a th:href="@{/criadores}">
         <button class="top-button">Criadores</button>
         </a>
-        <a href="https://www.google.com.br/?gws_rd=ssl">
-        <button class="top-button">Sair</button>
+        <a th:href="@{/pesquisa}">
+        <button class="top-button">🔎</button>
         </a>
     </div>   
     
-    <script src="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\js\1.js"></script>
-    <!--<script src="/js/1.js"></script>-->
+    <!--<script src="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\js\1.js"></script>-->
+    <script src="/js/1.js"></script>
     <!--Textos centrais-->
     <div class="junta">
         <div class="artezil">
@@ -88,12 +86,26 @@
         </div>
     
         <div>
-            <img src="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\images\estoque.png" alt="imagem-estoque"class="mojodojo">
-            <!--<img th:src="@{/images/estoque.png}" alt="imagem-estoque"class="mojodojo">-->
+            <!--<img src="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\images\estoque.png" alt="imagem-estoque"class="mojodojo">-->
+           <img th:src="@{/images/estoque.png}" alt="imagem-estoque"class="mojodojo">
             
         </div>
+        <div class="botao2">
+            <a th:href="@{/}">
+            <button class="top-button2">Inicio</button>
+            </a>
+            <a th:href="@{/Login}">           
+            <button class="top-button2">Cadastro/login</button>
+            </a>
+            <a th:href="@{/criadores}">
+            <button class="top-button2">Criadores</button>
+            </a>
+            <a th:href="@{/pesquisa}">
+            <button class="top-button2">🔎</button>
+            </a>
+        </div>   
     </div>
-    <script src="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\js\modoescuro.js"></script>
-    <!--<script src="/js/modoescuro.js"></script>-->
+    <!--<script src="C:\Users\befer\OneDrive\Área de Trabalho\controle_estoque_novo\controleestoqueoriginal\src\main\resources\static\js\modoescuro.js"></script>-->
+    <script src="/js/modoescuro.js"></script>
 </body>
 </html>

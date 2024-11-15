@@ -1,117 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300&family=Roboto&display=swap");
-/* SideBar*/
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Outfit', sans-serif;
-}
-:root {
-    --color-white: white;
-    --color-gray: #f0f2f5;
-    --color-gray2: #dddfe2;
-    --color-dark: #1d2129;
-    --color-blue: #1b74e4;
-    --color-blue2: #166fe5;
-    --color-green: #42b72a;
-    --color-green2: #36a420;
-    --color-body: #00BF63;
-}
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--color-body);
-    display: flex;
-    justify-content: center;
-    height: 90vh;
-}
-.dark-theme{
-    --color-body: var(--color-dark)
-}
 
-nav.menu-lateral{
-    width: 80px;
-    height: 100%;
-    background-color: #202020;
-    padding: 40px 0 40px 1%;
-    box-shadow: 3px 0 0 rgb(42, 170, 42);
-
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    overflow: hidden;
-    transition: .5s;
-    z-index: 1;
-}
-
-nav.menu-lateral.expandir{
-    width: 300px;
-}
-
-.btn-expandir{
-    width: 100%;
-    padding-left: 10px;
-}
-
-.btn-expandir >i{
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.Ideau {
-    width: 100%;
-    display: flex;
-    padding-right: 20px;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 500px;
-    position: absolute;
-    
-}
-
-ul{
-    height: 100%;
-    list-style-type: none;
-}
-
-ul li.item-menu{
-    transition: .1s;
-}
-
-ul li.ativo{
-    background-color: rgb(22, 141, 22);
-}
-
-ul li.item-menu:hover{
-    background: rgb(49, 48, 48);
-}
-
-ul li.item-menu a{
-    color: #fff;
-    text-decoration: none;
-    font-size: 20px;
-    padding: 20px 4%;
-    display: flex;
-    margin-bottom: 20px;
-    line-height: 40px;
-}
-
-ul li.item-menu a .txt-link{
-    margin-left: 70px;
-    transition: 1s;
-    opacity: 0;
-}
-
-nav.menu-lateral.expandir .txt-link{
-    margin-left: 40px;
-    opacity: 1;
-}
-
-ul li.item-menu a .icon >i{
-    font-size: 30px;
-    margin-left: 10px;
-}
 
 /*dedcorasao do adicina produto*/
 .add{
@@ -157,6 +45,71 @@ ul li.item-menu a .icon >i{
     padding: 30px;
     right: -195px ;
 }
+@media (max-width: 600px) {
+    /* Container para organizar os elementos */
+    .container {
+        display: flex;
+        flex-direction: column; /* Empilha os elementos */
+        align-items: center; /* Centraliza horizontalmente */
+        gap: 20px; /* Espaçamento entre os elementos */
+        padding: 10px; /* Espaçamento interno */
+    }
+
+    .rudiboga2 {
+        text-align: center; /* Alinha o texto no centro */
+        font-size: 20px; /* Tamanho da fonte */
+        margin-top:40px; 
+        margin-bottom: -40px;
+    }
+
+    form.add {
+        width: 100%; /* O formulário ocupa 80% da largura da tela */
+    }
+
+    .gremio {
+        width: 100%; /* Ajusta a largura ao formulário */
+        padding: 15px; /* Espaçamento interno */
+        background-color: #353535;
+        border-radius: 10px; /* Bordas arredondadas */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+        border: 1px solid #353535;
+        display: flex;
+        flex-direction: column; /* Empilha os elementos internos */
+        gap: 10px;
+        margin-left: -195px; /* Espaçamento entre os elementos */
+    }
+
+    label.beastars {
+        font-size: 25px; /* Ajuste do tamanho da fonte */
+        color: white; /* Cor do texto */
+    }
+
+    input {
+        font-size: 25px; /* Tamanho da fonte menor */
+        width: 100%; /* Ocupa toda a largura disponível */    
+        border-radius: 5px; /* Bordas arredondadas */
+        border: 1px solid #ccc; /* Borda padrão */
+        box-sizing: border-box; /* Inclui padding e border no tamanho total */
+        margin-bottom: -40px;
+        z-index: 2;
+    }
+
+    button {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+}
+
+
 .mulher{
     margin-right: -90px;
     width: 300px;
@@ -166,6 +119,21 @@ ul li.item-menu a .icon >i{
     right: 300px;
     transform: scale(0.85);
 }
+@media(max-width:600px){
+    .mulher{
+        display: none;
+    }
+    .rudiboga{
+        display: none;
+    }
+}
+@media(min-width:600px){
+    .rudiboga2{
+        display: none;
+    }
+}
+
+
 
 .fonte{
     color: #00BF63;

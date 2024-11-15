@@ -6,9 +6,7 @@
     box-sizing: border-box;
     font-family: 'Outfit', sans-serif;
 }
-body{
-    height: 100vh;
-}
+
 
 nav.menu-lateral{
     width: 80px;
@@ -23,21 +21,72 @@ nav.menu-lateral{
 
     overflow: hidden;
     transition: .5s;
+    z-index: 3;
+}
+@media (max-width: 600px){
+    nav.menu-lateral{
+        width: 0;
+        padding: 0;
+        z-index: 2;
+    }
+    /* Quando o checkbox estiver marcado, mostrar a sidebar expandida */
+    #toggle-sidebar:checked ~ nav.menu-lateral {
+        width: 200px;
+        padding: 40px 0 40px 1%;
+    }
+
+    ul{
+        height: 100%;
+        list-style-type: none;
+        margin-left: -13px;
+        padding-top: 60px;
+    }
+
+}
+@media (min-width: 600px){
+    #toggle-sidebar:checked ~ nav.menu-lateral {
+       display: none;
+    }
 }
 
 nav.menu-lateral.expandir{
     width: 300px;
 }
+@media (max-width: 600px){
+    nav.menu-lateral.expandir{
+        width: 200px;
+    }
+   
+}
+
 
 .btn-expandir{
-    width: 100%;
-    padding-left: 10px;
+    position: fixed;
+    top: 20px;
+    left: 0;
+    z-index: 1000;
+    background-color: #00BF63;
+    padding: 5px;
+    cursor: pointer;
+    
 }
 
 .btn-expandir >i{
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
+    color: #000000;
+    font-size: 30px;
+    
+}
+
+@media (min-width: 600px){
+    .btn-expandir >i{
+        color: #ffffff;
+        
+    }
+    .btn-expandir{
+        background-color: #202020;
+        
+    }
+   
 }
 
 .Ideau {
@@ -54,6 +103,7 @@ nav.menu-lateral.expandir{
 ul{
     height: 100%;
     list-style-type: none;
+    padding-top: 70px;
 }
 
 ul li.item-menu{

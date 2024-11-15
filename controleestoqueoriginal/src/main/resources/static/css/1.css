@@ -41,21 +41,73 @@ nav.menu-lateral{
 
     overflow: hidden;
     transition: .5s;
+    z-index: 3;
 }
+
+@media (max-width: 600px){
+    nav.menu-lateral{
+        width: 0;
+        padding: 0;
+        z-index: 3;
+    }
+    /* Quando o checkbox estiver marcado, mostrar a sidebar expandida */
+    #toggle-sidebar:checked ~ nav.menu-lateral {
+        width: 200px;
+        padding: 40px 0 40px 1%;
+    }
+
+    ul{
+        height: 100%;
+        list-style-type: none;
+        margin-left: -13px;
+        padding-top: 60px;
+    }
+
+}
+@media (min-width: 600px){
+    #toggle-sidebar:checked ~ nav.menu-lateral {
+       display: none;
+    }
+}
+
 
 nav.menu-lateral.expandir{
     width: 300px;
 }
 
+@media (max-width: 600px){
+    nav.menu-lateral.expandir{
+        width: 200px;
+    }
+   
+}
+
 .btn-expandir{
-    width: 100%;
-    padding-left: 10px;
+    position: fixed;
+    top: 20px;
+    left: 0;
+    z-index: 1000;
+    background-color: #00BF63;
+    padding: 5px;
+    cursor: pointer;
+    
 }
 
 .btn-expandir >i{
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
+    color: #000000;
+    font-size: 30px;
+    
+}
+@media (min-width: 600px){
+    .btn-expandir >i{
+        color: #ffffff;
+        
+    }
+    .btn-expandir{
+        background-color: #202020;
+        
+    }
+   
 }
 
 .Ideau {
@@ -71,15 +123,10 @@ nav.menu-lateral.expandir{
 
 
 
-@media (max-width: 1000px) {
-    nav.menu-lateral {
-        display: none;
-    }
-}
-
 ul{
     height: 100%;
     list-style-type: none;
+    padding-top: 70px;
 }
 
 ul li.item-menu{
@@ -130,23 +177,16 @@ ul li.item-menu a .icon >i{
         top: 0;
         left: 23%;
         width: 70%;
+        z-index: 2;
         
     }
-    @media (max-width: 1000px) {
+    @media (max-width: 600px) {
         .botao {
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            top: auto;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            padding-bottom: 20px;
+            display: none;
         }
-        
+        .junta{
+            z-index: 1;
+        }
     }
     /* estilo botao*/
     .top-button {
@@ -158,8 +198,45 @@ ul li.item-menu a .icon >i{
         border-radius: 100px;
         font-size: 15px;
     }
-    @media(max-width:1000px){
-        .botao .top-button{
+    .junta{
+        z-index: 1;
+    }
+    @media(min-width:600px){
+        .botao2{
+            display: none;
+        }
+       
+    }
+    @media(max-width:600px){
+        .botao2{
+            display: flex;
+            flex-direction: column;
+            position:relative;
+            top: auto;
+            bottom: -100px;
+            
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 20px;
+            z-index: -1;
+            
+            order: 3;
+        }
+        .top-button2 {
+            padding: 10px 60px;
+            background-color: rgb(35,35,35);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 100px;
+            font-size: 15px;
+        }
+       
+    }
+    @media(max-width:600px){
+        .botao2 .top-button2{
                 padding: 5px 1px; /* Aumenta ainda mais o tamanho do botão em telas pequenas */
                 font-size: 25px;    
                 width: 300px;
@@ -168,8 +245,63 @@ ul li.item-menu a .icon >i{
         }
     }
 
+    /*estilo da pagina inicial paia*/
+/* Estilo padrão (para telas maiores) */
+.artezil {
+    position: relative;
+    text-align: center;
+    margin-top: 0px; 
+    top: 200px;
+    margin-left: 500px;
+    padding-top: 10px; 
+    padding-bottom: 0px; 
+    color: white;
+    width: 500px;
+    transform: scale(1.5);
+}
 
-  
+.mojodojo {
+    position: relative;
+    margin-top: 10px;
+    left: 100px;
+    width: 280px;
+    z-index: -1;
+}
+
+
+/* Ajuste para telas menores que 600px */
+@media (max-width: 600px) {
+    /* Centralizar e reorganizar a ordem dos elementos */
+    
+    .artezil {
+        order: 1; /* Garante que .artezil (textos) fique acima */
+        margin: 0; /* Remove margens para centralizar */
+        top: 0;    /* Remove deslocamento vertical */
+        width: auto;
+        transform: scale(1.2); /* Reduz o tamanho do texto */
+        margin-top: 60px;
+        position: relative;
+        z-index: -2;
+      
+        justify-content: center;
+    }
+
+    .artezil h1, .artezil h3, .artezil h6 {
+        margin: 10px 0;
+    }
+
+    .mojodojo {
+        order: 2; /* Define que a imagem vem depois dos textos */
+        margin-top: 20px;
+       margin-left: 50px;
+        left: 0; /* Remove deslocamento lateral */
+        width: 200px; /* Ajusta o tamanho da imagem */
+        position: relative;
+        z-index: -2;
+        justify-content: center;
+    }
+}
+    
 /*ESTILO DO LOGIN PAIA*/
 .content {
     display: flex;
@@ -300,55 +432,6 @@ P{
     top: 300px;
     z-index: -2;
 }
-/*estilo da pagina inicial paia*/
-.artezil h1, .artezil h3, .artezil h6 {
-    position: relative;
-    text-align: center;
-    margin-top: 0px; 
-    top: 200px;
-    margin-left: 200px;
-    padding-top: 10px; 
-    padding-bottom: 0px; 
-    color: white;
-    width: 500px;
-    transform: scale(1.5);
-        
-}
-.mojodojo {
-    position: relative;
-    margin-top: 150px;
-    left: 100px;
-    width: 280px;
-    z-index: -1;
-}
-
-/* Ajuste para telas menores que 600px */
-@media (max-width: 1000px) {
-    /* Centralizar textos e ajustar tamanho */
-    .artezil {
-        display: flex;
-        flex-direction: column; /* Coloca os elementos em coluna */
-        align-items: center;    /* Centraliza horizontalmente */
-        text-align: center;
-    }
-
-    .artezil h1, .artezil h3, .artezil h6 {
-        margin: 0px 0px;        /* Remove margem lateral */
-        top: 0;                /* Remove deslocamento vertical */
-        margin-left: 0;        /* Centraliza horizontalmente */
-        width: auto;           /* Ajusta a largura automaticamente */
-        transform: scale(1);   /* Reduz o tamanho do texto */
-    }
-
-    /* Centralizar imagem e ajustar tamanho */
-    .mojodojo {
-        margin-top: 20px;
-        left: 0;             /* Remove deslocamento lateral */
-        width: 200px;        /* Reduz a largura da imagem para caber melhor */
-    }
-}
-
-
 
 /*login formulario*/
 
@@ -357,10 +440,10 @@ P{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 300px;
+    gap: 500px;
     padding: 20px;
     text-align: left;
-   
+   margin-right: 10%;
     height: 100vh;
 }
 
@@ -370,9 +453,19 @@ P{
     justify-content: center;
     align-items: center;
 }
-
+@media (max-width: 600px){
+    .estocagem-container{
+        display: none;
+    }
+   
+}
+@media (min-width:600px){
+    .txt-login{
+        display: none;
+    }
+}
 .estocagem {
-    width: 300px;
+    width: 400px;
     height: auto;
     margin-top: -550px;
 }
@@ -388,6 +481,32 @@ P{
     border: 1px solid #353535;
     margin-right: -200px;
 }
+@media (max-width: 600px){
+    .login-form-container {
+        max-width: 450px;
+        width: 350px;
+        height: 75%;
+        padding: 30px;
+        background-color: #353535;
+        border-radius: 10px; /* Bordas arredondadas */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+        border: 1px solid #353535;
+        margin-right: -65px;
+        font-size: 20px;
+        margin-top: 20%;
+    }
+    .txt-login{
+        margin-top: 60px;
+        margin-right: -45px;
+        font-size: 40px;
+        scale: 1;
+        width: 20px;
+        white-space: nowrap;
+    
+    }
+   
+}
+
 
 /* Estilo para o formulário de login */
 .login-form {
@@ -427,7 +546,7 @@ button {
     color: #fff;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
     width: 100%;
